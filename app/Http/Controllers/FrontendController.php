@@ -10,10 +10,28 @@ use App\NewsLetter;
 use App\Pages;
 use Validator;
 use App\Products;
+use DB;
 
 
 class FrontendController extends Controller
 {
+
+
+   // public function __construct($categories){
+
+   //      $categories=Category::with('categories')->where(['parent_id'=>0])->get();
+   //      $categories=json_decode(json_encode($categories));
+   //      foreach ($categories as $cat) {
+   //          # code...
+   //      }
+   //      //echo "<pre>";print_r($categories);die;
+   //       $sub_category=Category::where(['parent_id'=>$cat->id])->get(); 
+
+
+
+   // }
+
+
     public function home(Request $request){
 
     	$categories=Category::with('categories')->where(['parent_id'=>0])->get();
@@ -86,14 +104,52 @@ class FrontendController extends Controller
         //echo "<pre>";print_r($categories);die;
          $sub_category=Category::where(['parent_id'=>$cat->id])->get(); 
 
-           $productDetails=Products::get();
+           $productDetails=Products::paginate(6);
 
         return view('frontend.product.view_product')->with(compact('productDetails','categories','sub_category'));
     }
 
-    public function productDetails(Request $request,$id){
+    public function fetch_data(Request $request){
+        $categories=Category::with('categories')->where(['parent_id'=>0])->get();
+        $categories=json_decode(json_encode($categories));
+        foreach ($categories as $cat) {
+            # code...
+        }
+        //echo "<pre>";print_r($categories);die;
+         $sub_category=Category::where(['parent_id'=>$cat->id])->get(); 
+      if($request->ajax()){
+        $productDetails=Products::paginate(6);
+        dd($productDetails);
+          return view('frontend.product.view_product')->with(compact('productDetails','categories','sub_category'))->render();   
+      }
+    }
 
-       $productDtails=Products::where('id',$id)->first();
+     //product 
+    // public function productPerpage(Request $request){
+    //        $categories=Category::with('categories')->where(['parent_id'=>0])->get();
+    //     $categories=json_decode(json_encode($categories));
+    //     foreach ($categories as $cat) {
+    //         # code...
+    //     }
+    //     //echo "<pre>";print_r($categories);die;
+    //      $sub_category=Category::where(['parent_id'=>$cat->id])->get(); 
+    //      if($request->ajax()){
+    //       //echo $per_page;
+    //       $sort_by = $request->get('per_page');
+    //       $productDetails=Products::paginate($sort_by);
+
+    //       return view('frontend.product.view_product')->with(compact('productDetails','categories','sub_category'))->render();   
+    //   }
+
+         
+        //return view('frontend.product.view_product')->with(compact('productDetails','categories','sub_category'));
+    //}
+
+    public function viewsingleProduct(Request $request,$slug){
+
+       $productDtails=Products::where('slug',$slug)->first();
+
+       return view('frontend.product.product_details')->with(compact('productDtails'));
 
        
     }

@@ -1833,6 +1833,8 @@
 													</div>
 													
 													<ul id="menu-left-menu-1" class="vertical-megamenu flytheme-menures">
+
+														<?php $categories=DB::table('categories')->where(['parent_id'=>0])->get(); ?>
 															@foreach($categories as $cat)
 														<li class="dropdown menu-computers-networking ya-menu-custom level1">
 															<a href="#" class="item-link dropdown-toggle">
@@ -1843,7 +1845,13 @@
 															
 															<ul class="dropdown-menu nav-level1 one-column">
 
-																
+																<?php $categories=DB::table('categories')->where(['parent_id'=>0])->get(); 
+																 foreach ($categories as $cat) {
+															            # code...
+															        }
+															         $sub_category=DB::table('categories')->where(['parent_id'=>$cat->id])->get(); 
+
+																?>
 																@foreach($sub_category as $sub_cat )
 																<li class="one-column menu-lorem-sed-fringilla">
 																	<a href="#">

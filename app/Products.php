@@ -10,4 +10,9 @@ class Products extends Model
 
     	return $this->belongsToMany('App\Tags');
     }
+
+     public function reviews(){
+
+    	return $this->belongsToMany('App\Review');
+    }
 }

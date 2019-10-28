@@ -36,6 +36,9 @@ Route::post('/check-subcribe-email','FrontendController@checkSubscribe');
 
 //product
 Route::get('/products','FrontendController@viewProduct');
+Route::get('/products/fetch_data','FrontendController@fetch_data');
+Route::get('/products/productPerpage','FrontendController@productPerpage');
+Route::get('/products/{slug}','FrontendController@viewsingleProduct');
 
 
 Route::group(['middleware'=>['adminLogin']],function(){

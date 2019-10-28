@@ -173,7 +173,7 @@
 	<script type="text/javascript" src="{{asset('frontend/js/main.min.js')}}"></script>
 	<script type="text/javascript" src="{{asset('frontend/js/megamenu.min.js')}}"></script>	
 	<script type="text/javascript" src="{{asset('frontend/js/pathLoader.min.js')}}"></script>
-	
+	@yield('extra-js')
 	<script type="text/javascript">
 		(function($){jQuery('.phone-icon-search').on('click',function(){jQuery('.sm-serachbox-pro').toggle("slide")});var sticky_navigation_offset=$(".yt-header-middle").offset();var sticky_navigation_offset_top=sticky_navigation_offset.top;var sticky_navigation=function(){var scroll_top=$(window).scrollTop();if(scroll_top>sticky_navigation_offset_top){$(".yt-header-middle").addClass("sticky-menu");$(".yt-header-middle").css({"position":"fixed","top":0,"left":0,"right":0,"z-index":800})}else{$(".yt-header-middle").removeClass("sticky-menu");$(".yt-header-middle").css({"position":"relative","z-index":30})}};sticky_navigation();$(window).scroll(function(){sticky_navigation()});$(document).ready(function(){$(".show-dropdown").each(function(){$(this).on("click",function(){$(this).toggleClass("show");$(this).parent().find("> ul").toggle(300)})})})}(jQuery))
 	</script>

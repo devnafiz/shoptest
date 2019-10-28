@@ -33,6 +33,17 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row clearfix">
+                                    <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
+                                        <label for="email_address_2">Url Name</label>
+                                    </div>
+                                    <div class="col-lg-10 col-md-10 col-sm-8">
+                                        <div class="form-group">
+                                            <input type="text" id="slug" name="slug" class="form-control" placeholder="Url Name">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row clearfix">
                                     <div class="col-lg-2 col-md-2 col-sm-4 form-control-label">
                                         <label for="email_address_2">Set Price</label>
